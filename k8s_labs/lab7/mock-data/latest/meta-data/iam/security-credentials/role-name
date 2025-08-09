@@ -1,0 +1,9 @@
+{
+  "Code" : "Success",
+  "LastUpdated" : "2025-08-08T00:00:00Z",
+  "Type" : "AWS-HMAC",
+  "AccessKeyId" : "FAKEACCESSKEY12345",
+  "SecretAccessKey" : "fakeSecretKey987654321",
+  "Token" : "fakeSessionToken==",
+  "Expiration" : "2025-08-09T00:00:00Z"
+}

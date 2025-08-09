@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: runtime-pwn
+  namespace: lab6
+  labels:
+    app: lab6
+spec:
+  securityContext:
+    seccompProfile:
+      type: Unconfined
+  containers:
+  - name: tools
+    image: alpine:3.20
+    command: ["sleep","infinity"]
+    volumeMounts:
+    - name: k3s
+      mountPath: /mnt/k3s
+      readOnly: false
+  volumes:
+  - name: k3s
+    hostPath:
+      path: /run/k3s
+      type: Directory

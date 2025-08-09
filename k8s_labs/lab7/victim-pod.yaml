@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: victim-pod
+  namespace: lab7
+spec:
+  containers:
+  - name: web
+    image: nginx

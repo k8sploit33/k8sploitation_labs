@@ -1,0 +1,4 @@
+{
+  "Buckets": ["sensitive-logs", "customer-data", "prod-backups"],
+  "VMs": ["k8s-node-1", "k8s-node-2"]
+}

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "[*] Doing CAP_SYS_ADMIN things..."

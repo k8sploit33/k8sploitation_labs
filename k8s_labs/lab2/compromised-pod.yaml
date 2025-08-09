@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: compromised
+  namespace: lab2
+spec:
+  nodeName: k3d-lab2-agent-0
+  containers:
+  - name: shell
+    image: curlimages/curl:latest
+    command: ["sleep", "infinity"]

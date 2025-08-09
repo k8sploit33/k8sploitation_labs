@@ -1,0 +1,22 @@
+cd ~/k8s_play/lab1
+cat > registries.yaml <<'YAML'
+configs:
+  "registry-1.docker.io":
+    tls:
+      ca_file: /etc/ssl/certs/zscaler-root.crt
+mirrors:
+  docker.io:
+    endpoint:
+      - "https://registry-1.docker.io"
+YAML
+
+k3d cluster delete priv-esc-lab || true
+k3d cluster create priv-esc-lab \
+  --agents 1 \
+  --k3s-arg '--disable=servicelb@server:0' \
+  --volume "$PWD/flags:/labflags@server:0" \
+  --volume "$PWD/flags:/labflags@agent:0" \
+  --volume "$PWD/registries.yaml:/etc/rancher/k3s/registries.yaml:ro@server:0" \
+  --volume "$PWD/registries.yaml:/etc/rancher/k3s/registries.yaml:ro@agent:0" \
+  --volume "$HOME/corp-certs/zscaler-bundle.crt:/etc/ssl/certs/zscaler-root.crt:ro@server:0" \
+  --volume "$HOME/corp-certs/zscaler-bundle.crt:/etc/ssl/certs/zscaler-root.crt:ro@agent:0"
